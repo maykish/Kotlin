@@ -1,9 +1,17 @@
 package myapp
 import com.anysolo.toyGraphics.*
 
-fun main() {
-    val wnd = Window(800, 600)
-    val gc = Graphics(wnd)
 
-    gc.drawRect(200, 200, 100, 50)
+fun main() {
+    val wnd = Window(1024, 768)
+    val turtle = Turtle(wnd)
+
+    var step = 10
+
+    repeat(50) {
+        turtle.forward(step)
+        turtle.turnRight(90.0)
+
+        step += 10
+    }
 }
