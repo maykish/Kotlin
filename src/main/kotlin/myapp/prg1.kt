@@ -3,7 +3,7 @@ import com.anysolo.toyGraphics.*
 
 
 fun main() {
-    val wnd = Window(1024, 768)
+    val wnd = Window(800, 600)
     val turtle = Turtle(wnd)
 
     var step = 10
