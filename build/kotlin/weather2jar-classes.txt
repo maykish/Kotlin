@@ -1,0 +1,1 @@
+/home/may/IdeaProjects/weather2/build/classes/kotlin/main/myapp/Weather_apiKt.class
