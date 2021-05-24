@@ -12,13 +12,15 @@ buildscript {
 }
 
 plugins {
-    kotlin("jvm") version "1.3.50"
+    kotlin("jvm") version "1.4.20"
     id("com.github.johnrengelman.shadow") version "5.1.0"
+    //id("org.jetbrains.kotlin.plugin.serialization") version "1.2"
 }
 
 repositories {
     jcenter()
     maven(url="https://dl.bintray.com/anysolo/edu")
+    maven(url="https://jitpack.io")
 }
 
 dependencies {
@@ -26,6 +28,8 @@ dependencies {
     compile(kotlin("stdlib"))
     compile(kotlin("stdlib-jdk8"))
     compile(kotlin("reflect"))
+    //implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.2.1")
+    implementation("com.github.jkcclemens:khttp:0.1.0")
 }
 
 tasks.withType<ShadowJar>() {

@@ -1,12 +1,19 @@
 package myapp
-//import khttp.get
+import khttp.get
 
-//val location = "Kings+George,VA"
-//val mykey = "ccba5254c42840338cfd532452954101"
-//var url = "http://api.weatherbit.io/v2.0/forecast/hourly?city=$location&key=$mykey&units=I&hours=1"
-//var r = get(url) 
+/*data class All_Weather_Data("{  
+             "data":[          
+    var city_name =
+    var local_time =
+    var temp = 
+}
+*/
 
-fun main(){
-    print("Hello")
-    //println(r.jsonArray)
+var location = "Kings+George,VA"
+val mykey = "ccba5254c42840338cfd532452954101"
+val url = "http://api.weatherbit.io/v2.0/forecast/hourly?city=$location&key=$mykey&units=I&hours=1"
+val r = get(url)
+
+fun main() {
+    println(r.text)
 }
