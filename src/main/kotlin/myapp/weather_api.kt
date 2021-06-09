@@ -1,8 +1,8 @@
 package myapp
 
-import myapp.whenSerializeWeather_thenSuccess
 import khttp.get
 import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties
 
 val mapper = jacksonObjectMapper() 
 var location = "Kings+George,VA"
@@ -10,15 +10,48 @@ val mykey = "ccba5254c42840338cfd532452954101"
 val url = "http://api.weatherbit.io/v2.0/forecast/hourly?city=$location&key=$mykey&units=I&hours=1"
 val r = get(url)
 
+@JsonIgnoreProperties(ignoreUnknown = true)
 data class Weather(
-	var temp: Int,
-	var rain: Boolean,
-	var snow: Boolean,
+	val country_code: String,
+	val city_name: String,
+	val data: List <WeatherData>,
+	val state_code: String,
 	)
 
+@JsonIgnoreProperties(ignoreUnknown = true)
+data class WeatherData(
+	val pres: Int,
+	val clouds: Int,
+	val wind_spd: Float,
+	val ozone: Float,
+	val datetime: String,
+	val precip: Int,
+	val weather: WeatherDescriptors,
+	val snow_depth: Int,
+	val clouds_mid: Int,
+	val uv: Float,
+	val vis: Int,
+	val temp: Float,
+	val clouds_gi: Int,
+	val app_temp: Int,
+	val solar_rad: Float,
+	val wind_gust_spd: Float,
+	val clouds_low: Int,
+	val snow: Int,
+	val wind_cdir_full: String
+	)
+
+data class WeatherDescriptors(
+	val code: Int,
+	val icon: String,
+	val description: String
+	)
+
+val weather = mapper.readValue("""${r.jsonObject}""", Weather::class.java)
+
 fun main() {
-    whenSerializeWeather_thenSuccess()
-	//println(r.jsonObject)
+	println(weather)
+	println("The weather in ${weather.city_name} is ${weather.data[0].weather.description}.")
 }
 
 /*Sample Output:

@@ -12,9 +12,9 @@ buildscript {
 }
 
 plugins {
-    kotlin("jvm") version "1.4.20"
+    java
+	kotlin("jvm") version "1.4.20"
     id("com.github.johnrengelman.shadow") version "5.1.0"
-    //id("org.jetbrains.kotlin.plugin.serialization") version "1.2"
 }
 
 repositories {
@@ -28,13 +28,21 @@ dependencies {
     compile(kotlin("stdlib"))
     compile(kotlin("stdlib-jdk8"))
     compile(kotlin("reflect"))
-    //implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.2.1")
-    implementation("com.github.jkcclemens:khttp:0.1.0")
+	compile("com.fasterxml.jackson.module:jackson-module-kotlin:2.10.+")
+	implementation("com.github.jkcclemens:khttp:0.1.0")
+	testImplementation("org.junit.jupiter:junit-jupiter:5.5.2")
 }
 
 tasks.withType<ShadowJar>() {
     manifest {
         attributes["Main-Class"] = "myapp.Weather_apiKt"
+    }
+}
+
+tasks.test {
+    useJUnitPlatform()
+	testLogging {
+        events("passed", "skipped", "failed")
     }
 }
 
