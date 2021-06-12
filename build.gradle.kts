@@ -28,7 +28,7 @@ dependencies {
     compile(kotlin("stdlib"))
     compile(kotlin("stdlib-jdk8"))
     compile(kotlin("reflect"))
-	compile("com.fasterxml.jackson.module:jackson-module-kotlin:2.10.+")
+	compile("com.fasterxml.jackson.module:jackson-module-kotlin:2.10.0")
 	implementation("com.github.jkcclemens:khttp:0.1.0")
 	testImplementation("org.junit.jupiter:junit-jupiter:5.5.2")
 }
