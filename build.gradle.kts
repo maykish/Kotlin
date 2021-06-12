@@ -28,6 +28,7 @@ dependencies {
     compile(kotlin("stdlib"))
     compile(kotlin("stdlib-jdk8"))
     compile(kotlin("reflect"))
+	compile("com.sparkjava:spark-kotlin:1.0.0-alpha")
 	compile("com.fasterxml.jackson.module:jackson-module-kotlin:2.10.0")
 	implementation("com.github.jkcclemens:khttp:0.1.0")
 	testImplementation("org.junit.jupiter:junit-jupiter:5.5.2")
@@ -35,7 +36,7 @@ dependencies {
 
 tasks.withType<ShadowJar>() {
     manifest {
-        attributes["Main-Class"] = "myapp.Weather_apiKt"
+		attributes["Main-Class"] = "myapp.Weather_apiKt"
     }
 }
 
