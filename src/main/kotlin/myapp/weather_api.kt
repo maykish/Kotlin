@@ -3,6 +3,7 @@ package myapp
 import khttp.get
 import spark.kotlin.*
 import spark.Spark.*
+import java.net.URLEncoder
 import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties
 
@@ -53,7 +54,13 @@ fun main(args: Array<String>) {
 	//path ("/weather") {
 	
 	get("/weather/:location") { req, res -> 
-		"Hello from ${req.params("location")}"
+		val url = "http://api.weatherbit.io/v2.0/forecast/hourly?city=${URLEncoder.encode(req.params("location"), "utf-8")}&key=$mykey&units=I&hours=1"
+		val r = get(url)
+		val weather = mapper.readValue("""${r.jsonObject}""", Weather::class.java)
+
+		"The weather in ${weather.city_name} is ${weather.data[0].weather.description}."
+	
+		//"Hello from ${req.params("location")}"
 	}
 	
 		//get("/", (request, responce) -> {
