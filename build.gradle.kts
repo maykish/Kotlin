@@ -36,7 +36,7 @@ dependencies {
 
 tasks.withType<ShadowJar>() {
     manifest {
-		attributes["Main-Class"] = "myapp.Weather_apiKt"
+		attributes["Main-Class"] = "myapp.RestKt"
     }
 }
 
